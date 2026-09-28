@@ -61,7 +61,7 @@ fun Bandera(modifier: Modifier = Modifier) {
     ConstraintLayout(modifier = modifier.fillMaxSize()) {
         val (caja, caja1, caja2, caja3) = createRefs();
         val LineGuide = createGuidelineFromTop(0.45f)
-        Box(modifier.background(Color.Green).constrainAs(caja){
+        Box(modifier.background(Color(0xFF0055A4)).constrainAs(caja){
             top.linkTo(parent.top)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
@@ -77,18 +77,13 @@ fun Bandera(modifier: Modifier = Modifier) {
             width = Dimension.fillToConstraints
             height = Dimension.fillToConstraints
         })
-        Box(modifier.background(Color.Red).constrainAs(caja2){
+        Box(modifier.background(Color(0xFFEF4135)).constrainAs(caja2){
             top.linkTo(parent.top)
             bottom.linkTo(parent.bottom)
             start.linkTo(caja1.end)
             end.linkTo(parent.end)
             width = Dimension.fillToConstraints
             height = Dimension.fillToConstraints
-        })
-        Image(painter = painterResource(R.drawable.mexico_coat_of_arms), contentDescription = null, modifier = Modifier.size(110.dp).constrainAs(caja3){
-            top.linkTo(LineGuide)
-            start.linkTo(caja1.start)
-            end.linkTo(caja2.start)
         })
     }
 }
