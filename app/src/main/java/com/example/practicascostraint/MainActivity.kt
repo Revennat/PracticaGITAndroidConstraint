@@ -71,9 +71,9 @@ val RombosShape = GenericShape { size, _ ->
 fun Bandera(modifier: Modifier = Modifier) {
     ConstraintLayout(modifier = modifier.fillMaxSize()) {
         val (caja, caja1, caja2, caja3) = createRefs();
-        val LineGuide = createGuidelineFromTop(0.39f)
-        val LineGuidey = createGuidelineFromBottom(0.39f)
-        Box(modifier.background(Color(0xFF009B3A)).constrainAs(caja){
+        val LineGuide = createGuidelineFromTop(0.5f)
+        val LineGuidey = createGuidelineFromBottom(0.5f)
+        Box(modifier.background(Color.White).constrainAs(caja){
             top.linkTo(parent.top)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
@@ -81,19 +81,12 @@ fun Bandera(modifier: Modifier = Modifier) {
             width = Dimension.fillToConstraints
             height = Dimension.fillToConstraints
         })
-        Box(modifier = modifier.size(300.dp).clip(RombosShape).background(Color(0xFFFEDF00)).constrainAs(caja1){
-            top.linkTo(LineGuide)
-            bottom.linkTo(LineGuidey)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-
-        })
         Box(modifier = Modifier.size(130.dp).clip(CircleShape).background(
-            Color(0xFF002776)).constrainAs(caja2){
-                top.linkTo(caja1.top)
-                bottom.linkTo(caja1.bottom)
-                start.linkTo(caja1.start)
-                end.linkTo(caja1.end)
+            Color.Red).constrainAs(caja1){
+                top.linkTo(LineGuide)
+                bottom.linkTo(LineGuide)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
 
         })
 
