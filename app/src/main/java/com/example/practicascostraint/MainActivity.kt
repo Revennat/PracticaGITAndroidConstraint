@@ -94,6 +94,7 @@ fun Bandera(modifier: Modifier = Modifier) {
                 bottom.linkTo(caja2.top)
                 start.linkTo(LineGuide)
         })
+
     }
 }
 
