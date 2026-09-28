@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -56,6 +57,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+val RombosShape = GenericShape { size, _ ->
+    moveTo(size.width / 2f, 0f)
+    lineTo(size.width, size.height / 2f)
+    lineTo(size.width / 2f, size.height)
+    lineTo(0f, size.height / 2f)
+    close()
+}
 
 
 @Preview
@@ -63,36 +71,30 @@ class MainActivity : ComponentActivity() {
 fun Bandera(modifier: Modifier = Modifier) {
     ConstraintLayout(modifier = modifier.fillMaxSize()) {
         val (caja, caja1, caja2, caja3) = createRefs();
-        val LineGuide = createGuidelineFromStart(0.39f)
-        Box(modifier.background(Color(0xFF74ACDF)).constrainAs(caja){
+        val LineGuide = createGuidelineFromTop(0.39f)
+        val LineGuidey = createGuidelineFromBottom(0.39f)
+        Box(modifier.background(Color(0xFF009B3A)).constrainAs(caja){
             top.linkTo(parent.top)
-            bottom.linkTo(caja1.top)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-            width = Dimension.fillToConstraints
-            height = Dimension.fillToConstraints
-        })
-        Box(modifier.background(Color.White).constrainAs(caja1){
-            top.linkTo(caja.bottom)
-            bottom.linkTo(caja2.top)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-            width = Dimension.fillToConstraints
-            height = Dimension.fillToConstraints
-        })
-        Box(modifier.background(Color(0xFF74ACDF)).constrainAs(caja2){
-            top.linkTo(caja1.bottom)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
             end.linkTo(parent.end)
             width = Dimension.fillToConstraints
             height = Dimension.fillToConstraints
         })
-        Box(modifier = Modifier.size(100.dp).clip(CircleShape).background(
-            Color(0xFFF6B40E)).constrainAs(caja3){
-                top.linkTo(caja.bottom)
-                bottom.linkTo(caja2.top)
-                start.linkTo(LineGuide)
+        Box(modifier = modifier.size(300.dp).clip(RombosShape).background(Color(0xFFFEDF00)).constrainAs(caja1){
+            top.linkTo(LineGuide)
+            bottom.linkTo(LineGuidey)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+
+        })
+        Box(modifier = Modifier.size(130.dp).clip(CircleShape).background(
+            Color(0xFF002776)).constrainAs(caja2){
+                top.linkTo(caja1.top)
+                bottom.linkTo(caja1.bottom)
+                start.linkTo(caja1.start)
+                end.linkTo(caja1.end)
+
         })
 
     }
