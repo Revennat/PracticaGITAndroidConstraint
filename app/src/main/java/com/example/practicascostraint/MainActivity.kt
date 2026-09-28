@@ -23,12 +23,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,16 +63,16 @@ class MainActivity : ComponentActivity() {
 fun Bandera(modifier: Modifier = Modifier) {
     ConstraintLayout(modifier = modifier.fillMaxSize()) {
         val (caja, caja1, caja2, caja3) = createRefs();
-        val LineGuide = createGuidelineFromTop(0.45f)
-        Box(modifier.background(Color.Yellow).constrainAs(caja){
+        val LineGuide = createGuidelineFromStart(0.39f)
+        Box(modifier.background(Color(0xFF74ACDF)).constrainAs(caja){
             top.linkTo(parent.top)
             bottom.linkTo(caja1.top)
             start.linkTo(parent.start)
             end.linkTo(parent.end)
             width = Dimension.fillToConstraints
-            height = Dimension.percent(0.50f)
+            height = Dimension.fillToConstraints
         })
-        Box(modifier.background(Color.Blue).constrainAs(caja1){
+        Box(modifier.background(Color.White).constrainAs(caja1){
             top.linkTo(caja.bottom)
             bottom.linkTo(caja2.top)
             start.linkTo(parent.start)
@@ -77,13 +80,19 @@ fun Bandera(modifier: Modifier = Modifier) {
             width = Dimension.fillToConstraints
             height = Dimension.fillToConstraints
         })
-        Box(modifier.background(Color.Red).constrainAs(caja2){
+        Box(modifier.background(Color(0xFF74ACDF)).constrainAs(caja2){
             top.linkTo(caja1.bottom)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
             end.linkTo(parent.end)
             width = Dimension.fillToConstraints
             height = Dimension.fillToConstraints
+        })
+        Box(modifier = Modifier.size(100.dp).clip(CircleShape).background(
+            Color(0xFFF6B40E)).constrainAs(caja3){
+                top.linkTo(caja.bottom)
+                bottom.linkTo(caja2.top)
+                start.linkTo(LineGuide)
         })
     }
 }
