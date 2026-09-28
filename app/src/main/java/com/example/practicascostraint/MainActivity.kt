@@ -75,7 +75,7 @@ fun Bandera(modifier: Modifier = Modifier) {
             start.linkTo(parent.start)
             end.linkTo(parent.end)
             width = Dimension.fillToConstraints
-            height = Dimension.percent(0.525f)
+            height = Dimension.percent(0.52525f)
         })
         Box(modifier.background(Color(0xFFAA151B)).constrainAs(caja2){
             top.linkTo(caja1.bottom)
