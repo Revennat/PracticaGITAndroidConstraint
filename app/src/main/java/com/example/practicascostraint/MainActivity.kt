@@ -61,26 +61,26 @@ fun Bandera(modifier: Modifier = Modifier) {
     ConstraintLayout(modifier = modifier.fillMaxSize()) {
         val (caja, caja1, caja2, caja3) = createRefs();
         val LineGuide = createGuidelineFromTop(0.45f)
-        Box(modifier.background(Color(0xFF009246)).constrainAs(caja){
+        Box(modifier.background(Color.Black).constrainAs(caja){
             top.linkTo(parent.top)
+            bottom.linkTo(caja1.top)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.fillToConstraints
+            height = Dimension.fillToConstraints
+        })
+        Box(modifier.background(Color(0xFFDD0000)).constrainAs(caja1){
+            top.linkTo(caja.bottom)
+            bottom.linkTo(caja2.top)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.fillToConstraints
+            height = Dimension.fillToConstraints
+        })
+        Box(modifier.background(Color(0xFFFFCE00)).constrainAs(caja2){
+            top.linkTo(caja1.bottom)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
-            end.linkTo(caja1.start)
-            width = Dimension.fillToConstraints
-            height = Dimension.fillToConstraints
-        })
-        Box(modifier.background(Color.White).constrainAs(caja1){
-            top.linkTo(parent.top)
-            bottom.linkTo(parent.bottom)
-            start.linkTo(caja.end)
-            end.linkTo(caja2.start)
-            width = Dimension.fillToConstraints
-            height = Dimension.fillToConstraints
-        })
-        Box(modifier.background(Color(0xFFCE2B37)).constrainAs(caja2){
-            top.linkTo(parent.top)
-            bottom.linkTo(parent.bottom)
-            start.linkTo(caja1.end)
             end.linkTo(parent.end)
             width = Dimension.fillToConstraints
             height = Dimension.fillToConstraints
