@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import com.example.practicascostraint.ui.theme.BanderaScreen
 import com.example.practicascostraint.ui.theme.PracticasCostraintTheme
 
 class MainActivity : ComponentActivity() {
@@ -50,7 +51,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PracticasCostraintTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Bandera()
+                    BanderaScreen()
                 }
             }
         }
@@ -66,30 +67,6 @@ val RombosShape = GenericShape { size, _ ->
 }
 
 
-@Preview
-@Composable
-fun Bandera(modifier: Modifier = Modifier) {
-    ConstraintLayout(modifier = modifier.fillMaxSize()) {
-        val (caja, caja1, caja2, caja3) = createRefs();
-        val LineGuide = createGuidelineFromTop(0.5f)
-        val LineGuidey = createGuidelineFromBottom(0.5f)
-        Box(modifier.background(Color.White).constrainAs(caja){
-            top.linkTo(parent.top)
-            bottom.linkTo(parent.bottom)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-            width = Dimension.fillToConstraints
-            height = Dimension.fillToConstraints
-        })
-        Box(modifier = Modifier.size(130.dp).clip(CircleShape).background(
-            Color.Red).constrainAs(caja1){
-                top.linkTo(LineGuide)
-                bottom.linkTo(LineGuide)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
 
-        })
 
-    }
-}
 
